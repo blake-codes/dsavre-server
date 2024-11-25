@@ -58,7 +58,12 @@ const authenticate = (req, res, next) => {
 
 // Routes
 
-// 1. Submit a message
+// 1. Health Check Route
+app.get("/health", (req, res) => {
+  res.status(200).json({ message: "Server is healthy" });
+});
+
+// 2. Submit a message
 app.post("/api/messages", async (req, res, next) => {
   try {
     const { name, email, message } = req.body;
@@ -77,7 +82,7 @@ app.post("/api/messages", async (req, res, next) => {
   }
 });
 
-// 2. Get all messages
+// 3. Get all messages
 app.get("/api/messages", authenticate, async (req, res, next) => {
   try {
     const messages = await Message.find();
@@ -87,7 +92,7 @@ app.get("/api/messages", authenticate, async (req, res, next) => {
   }
 });
 
-// 3. Get a single message by ID
+// 4. Get a single message by ID
 app.get("/api/messages/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
