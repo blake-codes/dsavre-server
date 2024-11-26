@@ -107,22 +107,22 @@ app.get("/api/messages/:id", async (req, res, next) => {
 });
 
 // Register Endpoint
-app.post("/register", async (req, res, next) => {
-  const { username, password } = req.body;
+// app.post("/register", async (req, res, next) => {
+//   const { username, password } = req.body;
 
-  try {
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      return res.status(400).json({ message: "Username already exists" });
-    }
+//   try {
+//     const existingUser = await User.findOne({ username });
+//     if (existingUser) {
+//       return res.status(400).json({ message: "Username already exists" });
+//     }
 
-    const newUser = new User({ username, password });
-    await newUser.save();
-    res.status(201).json({ message: "User registered successfully" });
-  } catch (err) {
-    next(err); // Pass the error to the global error handler
-  }
-});
+//     const newUser = new User({ username, password });
+//     await newUser.save();
+//     res.status(201).json({ message: "User registered successfully" });
+//   } catch (err) {
+//     next(err); // Pass the error to the global error handler
+//   }
+// });
 
 // Login Endpoint
 app.post("/login", async (req, res, next) => {
